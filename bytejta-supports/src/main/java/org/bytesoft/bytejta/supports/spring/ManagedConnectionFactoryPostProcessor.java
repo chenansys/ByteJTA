@@ -35,9 +35,14 @@ public class ManagedConnectionFactoryPostProcessor implements BeanPostProcessor 
 
 		Class<?> clazz = bean.getClass();
 		ClassLoader cl = clazz.getClassLoader();
-
+		/**
+		 * TODO 扫描到LocalXADataSource,创建动态代理
+		 * 扫描到了我们自己创建的一个LocalXADataSource，然后针对这个LocalXADataSource，创建了一个动态代理，
+		 * 动态代理的InvocationHandler是ManagedConnectionFactoryHandler，
+		 * 所以,后续如果代码找LocalXADataSource的时候，其实会找到对应的这个动态代理
+		 */
 		Class<?>[] interfaces = clazz.getInterfaces();
-
+		//进入到各自的动态代理类中
 		if (XADataSource.class.isInstance(bean)) {
 			ManagedConnectionFactoryHandler interceptor = new ManagedConnectionFactoryHandler(bean);
 			interceptor.setIdentifier(beanName);

@@ -73,8 +73,7 @@ public class TransactionManagerPostProcessor implements BeanFactoryPostProcessor
 		}
 
 		if (jtaTransactionManagerBeanName == null) {
-			throw new FatalBeanException(
-					"No configuration of org.springframework.transaction.jta.JtaTransactionManager was found.");
+			throw new FatalBeanException("No configuration of org.springframework.transaction.jta.JtaTransactionManager was found.");
 		}
 
 		for (int i = 0; i < beanNameList.size(); i++) {

@@ -34,7 +34,8 @@ import org.slf4j.LoggerFactory;
 
 public class SimpleWorkManager implements WorkManager {
 	static final Logger logger = LoggerFactory.getLogger(SimpleWorkManager.class);
-
+	//TODO SimpleWorkManager -> 负责管理 SimpleWork 线程
+	//创建线程池
 	private final ThreadPoolExecutor executor = new ThreadPoolExecutor(5, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS,
 			new LinkedBlockingQueue<Runnable>());
 	// private final ScheduledThreadPoolExecutor scheduled = new ScheduledThreadPoolExecutor(1);
@@ -47,6 +48,7 @@ public class SimpleWorkManager implements WorkManager {
 			throws WorkException {
 		SimpleWorkListener wrappedListener = new SimpleWorkListener(workListener);
 		wrappedListener.workAccepted(new WorkEvent(this, WorkEvent.WORK_ACCEPTED, work, null));
+		//工作线程
 		SimpleWork task = new SimpleWork();
 		task.setWork(work);
 		task.setWorkListener(wrappedListener);

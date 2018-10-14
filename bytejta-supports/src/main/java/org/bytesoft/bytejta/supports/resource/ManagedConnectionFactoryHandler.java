@@ -35,6 +35,10 @@ public class ManagedConnectionFactoryHandler implements InvocationHandler {
 		this.delegate = xads;
 	}
 
+	/**
+	 * TODO ManagedConnectionFactoryHandler -> XADataSource -> LocalXADataSource
+	 * XADataSource.class.isInstance(bean)
+	 */
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		Class<?> declaringClass = method.getDeclaringClass();
 		Class<?> returningClass = method.getReturnType();

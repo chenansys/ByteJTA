@@ -149,7 +149,7 @@ public class TransactionRecoveryImpl implements TransactionRecovery, Transaction
 		}
 	}
 
-	public synchronized void startRecovery() {
+	public synchronized void startRecovery() {//TODO 事务恢复开始
 		final TransactionRepository transactionRepository = beanFactory.getTransactionRepository();
 		final TransactionLogger transactionLogger = beanFactory.getTransactionLogger();
 		transactionLogger.recover(new TransactionRecoveryCallback() {
@@ -171,7 +171,7 @@ public class TransactionRecoveryImpl implements TransactionRecovery, Transaction
 			}
 		});
 
-		TransactionCoordinator transactionCoordinator = //
+		TransactionCoordinator transactionCoordinator = //TODO
 				(TransactionCoordinator) this.beanFactory.getTransactionCoordinator();
 		transactionCoordinator.markParticipantReady();
 	}

@@ -55,6 +55,7 @@ public class TransactionManagerImpl
 	private final Map<Thread, Transaction> associatedTxMap = new ConcurrentHashMap<Thread, Transaction>();
 	private boolean debuggingEnabled;
 
+	//TODO transactionManager.begin()
 	public void begin() throws NotSupportedException, SystemException {
 		if (this.getTransaction() != null) {
 			throw new NotSupportedException();
